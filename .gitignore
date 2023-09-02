@@ -1,0 +1,11 @@
+.idea
+venv
+media
+**/*.pyc
+**/*.sqlite3
+**/*.dump
+**/*.db
+*.db-journal
+**/*.sql
+test_config.py
+.env
