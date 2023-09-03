@@ -1,5 +1,7 @@
+{% extends "base.html" %}
 {% load math_filters %}
 
+{% block content %}
 {% for category in categories %}
 <h2>{{ category.name }}</h2>
 <ul>
@@ -17,3 +19,4 @@
     {% endfor %}
 </ul>
 {% endfor %}
+{% endblock %}
