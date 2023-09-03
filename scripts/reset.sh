@@ -4,3 +4,4 @@
  touch registry/migrations/__init__.py
  heroku pg:reset --app simplici7y --confirm baby-zelada-registry
  ./scripts/migrate
+ python manage.py changepassword rkuykendall
