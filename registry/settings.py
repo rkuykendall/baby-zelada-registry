@@ -17,8 +17,6 @@ from pathlib import Path
 if not os.environ.get("PRODUCTION"):
     load_dotenv()
 
-DEBUG = os.environ.get("DEBUG")
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -30,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG")
 
 ALLOWED_HOSTS = [
     "baby-zelada-registry-2216bd384938.herokuapp.com",
