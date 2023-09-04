@@ -13,7 +13,9 @@ class Category(models.Model):
 
 class Item(models.Model):
     name = models.CharField(max_length=255)
-    link = models.URLField(blank=True, null=True)  # Link to where the item can be purchased.
+    link = models.URLField(
+        blank=True, null=True
+    )  # Link to where the item can be purchased.
     price = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     quantity_desired = models.PositiveIntegerField(default=1)
