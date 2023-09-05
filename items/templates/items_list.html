@@ -17,8 +17,8 @@
     {% for item in category.item_set.all %}
     <tr>
         <td width="100px">
-            {% if item.image %}
-                <img src="{{ item.image.url }}">
+            {% if item.photo %}
+                <img src="{{ item.photo }}">
             {% endif %}
         </td>
 
