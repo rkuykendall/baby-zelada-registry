@@ -28,8 +28,8 @@
         </td>
 
         {% if item.quantity_desired|subtract:item.num_gifts > 0 %}
-            <td width="100px">{{ item.quantity_desired|subtract:item.num_gifts }}</td>
-            <td width="150px"><a href="{% url 'create_gift' %}?item_id={{ item.id }}">Register purchase</a></td>
+            <td width="100px">Missing {{ item.quantity_desired|subtract:item.num_gifts }}</td>
+            <td width="150px"><a class="button" href="{% url 'create_gift' %}?item_id={{ item.id }}">I bought this</a></td>
         {% else %}
             <td></td>
             <td>Done!</td>
