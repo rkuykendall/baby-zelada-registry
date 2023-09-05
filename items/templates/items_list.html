@@ -4,17 +4,38 @@
 {% block content %}
 {% for category in categories %}
 <h2>{{ category.name }}</h2>
-<ul>
+<table>
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Needed</th>
+            <th></th>
+        </tr>
+    </thead>
     {% for item in category.item_set.all %}
-    <li>
-        {{ item.name }}
-        {% if item.quantity_desired > item.num_gifts %}
-            - {{ item.quantity_desired|subtract:item.num_gifts }} Needed. <a href="{% url 'create_gift' %}?item_id={{ item.id }}">Register purchase</a>
+    <tr>
+        {% if item.link %}
+            <td width="300px"><a href="{{ item.link }}" target="_blank">{{ item.name }}</a></td>
         {% else %}
-            - {{ item.num_gifts }} Gifted
+            <td width="300px">{{ item.name }}</td>
         {% endif %}
-    </li>
+
+        <td width="100px">
+            {% if item.price %}
+                ${{ item.price }}
+            {% endif %}
+        </td>
+
+        {% if item.quantity_desired|subtract:item.num_gifts > 0 %}
+            <td width="100px">{{ item.quantity_desired|subtract:item.num_gifts }}</td>
+            <td width="150px"><a href="{% url 'create_gift' %}?item_id={{ item.id }}">Register purchase</a></td>
+        {% else %}
+            <td></td>
+            <td>Done!</td>
+        {% endif %}
+    </tr>
     {% endfor %}
-</ul>
+</table>
 {% endfor %}
 {% endblock %}

@@ -1,14 +1,23 @@
 from django.shortcuts import render, redirect
 from django.db.models import Sum, Prefetch
+from django.db.models.functions import Coalesce
 from .models import Item, Category
 from .forms import GiftForm
 
 
 def item_list(request):
-    categories = Category.objects.all().prefetch_related(
-        Prefetch(
-            "item_set", queryset=Item.objects.annotate(num_gifts=Sum("gift__quantity"))
+    # Categories with at least one item
+    categories = (
+        Category.objects.all()
+        .prefetch_related(
+            Prefetch(
+                "item_set",
+                queryset=Item.objects.annotate(
+                    num_gifts=Coalesce(Sum("gift__quantity"), 0)
+                ),
+            )
         )
+        .filter(item__isnull=False)
     )
     user_authenticated = request.user.is_authenticated
 
