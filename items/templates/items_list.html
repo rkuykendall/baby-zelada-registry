@@ -7,6 +7,7 @@
 <table>
     <thead>
         <tr>
+            <th></th>
             <th>Item</th>
             <th>Price</th>
             <th>Needed</th>
@@ -15,11 +16,19 @@
     </thead>
     {% for item in category.item_set.all %}
     <tr>
-        {% if item.link %}
-            <td width="300px"><a href="{{ item.link }}" target="_blank">{{ item.name }}</a></td>
-        {% else %}
-            <td width="300px">{{ item.name }}</td>
-        {% endif %}
+        <td width="100px">
+            {% if item.image %}
+                <img src="{{ item.image.url }}">
+            {% endif %}
+        </td>
+
+        <td width="300px">
+            {% if item.link %}
+                <a href="{{ item.link }}" target="_blank">{{ item.name }}</a>
+            {% else %}
+                {{ item.name }}
+            {% endif %}
+        </td>
 
         <td width="100px">
             {% if item.price %}
