@@ -8,12 +8,10 @@
     {% for item in category.item_set.all %}
     <li>
         {{ item.name }}
-        {% if not user_authenticated %}
-            {% if item.quantity_desired > item.num_gifts %}
+        {% if item.quantity_desired > item.num_gifts %}
             - {{ item.quantity_desired|subtract:item.num_gifts }} Needed. <a href="{% url 'create_gift' %}?item_id={{ item.id }}">Register purchase</a>
         {% else %}
             - {{ item.num_gifts }} Gifted
-            {% endif %}
         {% endif %}
     </li>
     {% endfor %}
