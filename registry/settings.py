@@ -31,6 +31,8 @@ SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 DEBUG = os.environ.get("DEBUG")
 
 ALLOWED_HOSTS = [
+    "babyzelada.com",
+    "www.babyzelada.com",
     "baby-zelada-registry-2216bd384938.herokuapp.com",
     "127.0.0.1",
 ]
