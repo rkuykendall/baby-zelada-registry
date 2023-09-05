@@ -18,6 +18,7 @@ def item_list(request):
             )
         )
         .filter(item__isnull=False)
+        .distinct()
     )
     user_authenticated = request.user.is_authenticated
 
