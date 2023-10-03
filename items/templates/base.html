@@ -71,6 +71,12 @@
             text-decoration: none;
         }
 
+        p {
+            font-size: 18px;
+            line-height: 28px;
+            max-width: 75ch;
+        }
+
         form input:not([type=checkbox], [type=radio]), form select, form textarea {
             width: 100%;
             padding: 12px 20px;
@@ -130,9 +136,6 @@
 
     <main>
         {% block content %}
-        <h2>Thank you for checking out our registry!</h2>
-        <p>Please ship items directly to our home. Reach out if you need our address, or have any issues entering a gift you bought.</p>
-        <p><b>We'd LOVE your hand-me-downs!</b> Rather than buying us something new, we'd be delighted to receive used items in good condition (even if it's not the exact brand/type listed below).</p>
         {% endblock %}
     </main>
 
