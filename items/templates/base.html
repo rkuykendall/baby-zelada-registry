@@ -32,23 +32,30 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             color: var(--black);
         }
 
         body {
+            margin: 0;
+        }
+
+        .wrapper {
+            width: 100dw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
             max-width: 980px;
             border-radius: 2rem;
             padding: 1rem 2rem;
-            margin: 6rem 1rem;
+            margin: 6rem 0;
             background-color: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(1px);
         }
 
         header {
-            white-space: nowrap;
         }
 
         a {
@@ -101,27 +108,8 @@
             opacity: 0.9;
         }
 
-        table {
-            width: 100%;
-            border-spacing: 0;
-            border: 1px solid white;
-            border-width: 1px 0 0 1px;
-        }
-
-        th, td {
-            padding: 15px 5px;
-            text-align: left;
-            border: 1px solid white;
-            border-width: 0 1px 1px 0;
-        }
-
-        td img {
-            max-width: 100%;
-            border: 1px solid white;
-            box-sizing: border-box;
-        }
-
         a.button {
+            display: inline-block;
             background-color: var(--blue);
             color: white;
             border-radius: 4px;
@@ -131,6 +119,8 @@
     </style>
 </head>
 <body>
+    <div class="wrapper">
+    <div class="container">
     <header>
         <h1>&#10024; <a href="{% url 'item_list' %}">Baby Zelada Registry</a> &#10024;</h1>
     </header>
@@ -139,8 +129,7 @@
         {% block content %}
         {% endblock %}
     </main>
-
-    <footer>
-    </footer>
+    </div>
+    </div>
 </body>
 </html>

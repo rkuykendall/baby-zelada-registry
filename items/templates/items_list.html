@@ -2,53 +2,92 @@
 {% load math_filters %}
 
 {% block content %}
+<style>
+.category {
+}
+
+.items {
+  display: grid;
+  gap: 20px;
+}
+
+@media (min-width: 300px) {
+  .items { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 500px) {
+  .items { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 750px) {
+  .items { grid-template-columns: repeat(4, 1fr); }
+}
+
+.item {
+  border: 1px solid white;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.photo img {
+    width: 100%;
+}
+
+.name {
+}
+
+.price {
+}
+
+.missing {
+}
+
+.buy {
+}
+
+</style>
+
 <h2>Thank you for checking out our registry!</h2>
 <p>Please ship items directly to our home. Reach out if you need our address, or have any issues entering a gift you bought.</p>
 <p><b>We'd LOVE your hand-me-downs!</b> Rather than buying us something new, we'd be delighted to receive used items in good condition (even if it's not the exact brand/type listed below).</p>
 
 {% for category in categories %}
+<div class="category">
 <h2>{{ category.name }}</h2>
-<table>
-    <thead>
-        <tr>
-            <th></th>
-            <th>Item</th>
-            <th>Price</th>
-            <th>Needed</th>
-            <th></th>
-        </tr>
-    </thead>
+<div class="items">
     {% for item in category.item_set.all %}
-    <tr>
-        <td width="100px">
+    <div class="item">
+        <div class="photo">
             {% if item.photo %}
                 <a href="{{ item.photo }}" target="_blank"><img src="{{ item.photo }}"></a>
             {% endif %}
-        </td>
+        </div>
 
-        <td width="300px">
+        <div class="name">
             {% if item.link %}
                 <a href="{{ item.link }}" target="_blank">{{ item.name }}</a>
             {% else %}
                 {{ item.name }}
             {% endif %}
-        </td>
+        </div>
 
-        <td width="100px">
+        <div class="price">
             {% if item.price %}
                 ${{ item.price }}
             {% endif %}
-        </td>
+        </div>
 
         {% if item.quantity_desired|subtract:item.num_gifts > 0 %}
-            <td width="100px">Missing {{ item.quantity_desired|subtract:item.num_gifts }}</td>
-            <td width="150px"><a class="button" href="{% url 'create_gift' %}?item_id={{ item.id }}">I bought this</a></td>
+            <div class="missing">Missing {{ item.quantity_desired|subtract:item.num_gifts }}</div>
+            <div class="buy"><a class="button" href="{% url 'create_gift' %}?item_id={{ item.id }}">I bought this</a></div>
         {% else %}
-            <td></td>
-            <td>Done!</td>
+            <div class="missing"></div>
+            <div class="buy">Done!</div>
         {% endif %}
-    </tr>
+    </div>
     {% endfor %}
-</table>
+</div>
 {% endfor %}
 {% endblock %}
